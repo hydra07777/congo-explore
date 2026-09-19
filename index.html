@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kongo Explore — Réserver Kinshasa : hôtels, tables, concerts et sorties</title>
+<meta name="description" content="Kongo Explore réunit les adresses vérifiées de Kinshasa : hôtels, restaurants, cafés, événements et expériences. Réservation en ligne, paiement par mobile money ou carte.">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:title" content="Kongo Explore — Réservez Kinshasa, heure par heure">
+<meta property="og:description" content="Douze adresses vérifiées à Kinshasa. Réservation en ligne, paiement mobile money.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f%5B%5D=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/landing.css">
+</head>
+<body>
+
+<a class="skip-link" href="#contenu">Aller au contenu</a>
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="index.html" aria-label="Kongo Explore, accueil">
+      <svg class="brand__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect x="1" y="1" width="30" height="30" rx="9" fill="#EA4C89"/>
+        <path d="M9 23V9l7 6.5L23 9v14" stroke="#fff" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+      </svg>
+      <span>Kongo Explore</span>
+    </a>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-principal" aria-label="Ouvrir le menu">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav class="nav" id="nav-principal" data-open="false" aria-label="Navigation principale">
+      <a class="nav__link" href="activites.html">Adresses</a>
+      <a class="nav__link" href="villes.html">Villes</a>
+      <a class="nav__link" href="#parcours">Comment ça marche</a>
+      <a class="nav__link" href="#confiance">Paiement</a>
+      <a class="btn btn--primaire" href="activites.html">Réserver</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+
+  <!-- =====================================================================
+       HÉROS — la promesse à gauche, le collage photo à droite
+       ===================================================================== -->
+  <section class="hero">
+    <div class="wrap hero__grille">
+
+      <div class="hero__texte">
+        <h1 class="hero__titre">
+          <span class="lignes"><span class="ligne">Réservez Kinshasa,</span></span>
+          <span class="lignes"><span class="ligne"><span class="surligne">heure par heure.</span></span></span>
+        </h1>
+        <p class="hero__lede">
+          Douze adresses vérifiées sur place : un hôtel dans la Gombe, une table à Matonge,
+          une pirogue au coucher du soleil. Prix réel, disponibilité du jour, et paiement
+          par mobile money.
+        </p>
+
+        <form class="fiche hero__recherche" id="fiche-recherche" action="activites.html" method="get">
+          <div class="fiche__field">
+            <label for="f-ville">Ville</label>
+            <select id="f-ville" name="ville">
+              <option value="kinshasa" selected>Kinshasa</option>
+              <option value="lubumbashi" disabled>Lubumbashi — bientôt</option>
+              <option value="goma" disabled>Goma — bientôt</option>
+              <option value="bukavu" disabled>Bukavu — bientôt</option>
+            </select>
+          </div>
+          <div class="fiche__field">
+            <label for="f-cat">Catégorie</label>
+            <select id="f-cat" name="cat">
+              <option value="">Toutes les catégories</option>
+              <option value="hotel">Hôtels</option>
+              <option value="restaurant">Restaurants</option>
+              <option value="cafe">Cafés</option>
+              <option value="evenement">Événements</option>
+              <option value="experience">Expériences</option>
+            </select>
+          </div>
+          <div class="fiche__field">
+            <label for="f-commune">Commune</label>
+            <select id="f-commune" name="commune">
+              <option value="">Toutes les communes</option>
+            </select>
+          </div>
+          <div class="fiche__go">
+            <button class="btn btn--primaire" type="submit">
+              Chercher
+              <svg class="btn__icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15"/><path d="m13.5 6.5 5.5 5.5-5.5 5.5"/></svg>
+            </button>
+          </div>
+        </form>
+
+        <div class="cats-rail hero__raccourcis" id="raccourcis-categories" aria-label="Catégories les plus consultées"><!-- rendu par JS --></div>
+
+        <div class="hero__confiance">
+          <div class="hero__avatars" aria-hidden="true">
+            <span class="hero__avatar hero__avatar--1">MK</span>
+            <span class="hero__avatar hero__avatar--2">NT</span>
+            <span class="hero__avatar hero__avatar--3">SI</span>
+          </div>
+          <div class="hero__confiance-texte">
+            <strong id="hero-note">Note moyenne des adresses</strong>
+            <span id="hero-note-detail">calculée sur les avis publiés</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__visuel">
+        <div class="hero__collage">
+          <figure class="hero__photo hero__photo--grande plate">
+            <img id="hero-image" src="assets/img/hero-kinshasa.jpg" alt="Le boulevard du 30 Juin à la Gombe, taxis jaunes et tours de Kinshasa" width="1600" height="900" fetchpriority="high" decoding="async">
+            <span class="hero__etiquette">
+              <span data-icone="pin"></span> Gombe · Kinshasa
+            </span>
+          </figure>
+          <figure class="hero__photo plate">
+            <img src="assets/img/fiche-fleuve.jpg" alt="Pirogues sur le fleuve Congo au coucher du soleil" loading="lazy" decoding="async" width="1200" height="900">
+          </figure>
+          <figure class="hero__photo plate">
+            <img src="assets/img/fiche-rumba.jpg" alt="Montage de la scène avant un concert de rumba" loading="lazy" decoding="async" width="1200" height="900">
+          </figure>
+        </div>
+
+        <!-- Deux repères issus des données : rien qui ne soit affichable -->
+        <p class="carte-flottante carte-flottante--prix" id="carte-prix">
+          <span class="carte-flottante__titre">Le moins cher</span>
+          <span class="carte-flottante__valeur" id="carte-prix-valeur">—</span>
+          <span class="carte-flottante__pied" id="carte-prix-pied">—</span>
+        </p>
+        <p class="carte-flottante carte-flottante--note" id="carte-note">
+          <span class="carte-flottante__titre">Le mieux noté</span>
+          <span class="carte-flottante__valeur" id="carte-note-valeur">—</span>
+          <span class="carte-flottante__pied" id="carte-note-pied">—</span>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       BANDE DE VALEURS
+       ===================================================================== -->
+  <section class="strip" aria-label="Ce que couvre la plateforme">
+    <div class="wrap strip__inner">
+      <p class="strip__item"><span class="num strip__num">12</span> adresses vérifiées</p>
+      <p class="strip__item"><span class="num strip__num">5</span> catégories de sorties</p>
+      <p class="strip__item"><span class="num strip__num">3</span> paiements mobiles</p>
+      <p class="strip__item"><span class="num strip__num">24 h</span> pour annuler</p>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       CATÉGORIES — tuiles teintées
+       ===================================================================== -->
+  <section class="section" id="categories">
+    <div class="wrap">
+      <div class="head">
+        <h2>Cinq façons de sortir à Kinshasa</h2>
+        <p class="head__meta">Chaque type de sortie a son propre formulaire de réservation, adapté à ce qu’on y choisit vraiment.</p>
+      </div>
+      <ul class="cats" id="liste-cats"><!-- rendu par JS --></ul>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       ADRESSES EN VEDETTE
+       ===================================================================== -->
+  <section class="section bande" id="index">
+    <div class="wrap">
+      <div class="head">
+        <h2>Les adresses du guide</h2>
+        <p class="head__meta">Douze fiches visitées : eau, courant, accès et prix réel constatés sur place.</p>
+      </div>
+
+      <div class="chips" id="filtres-index" role="group" aria-label="Filtrer par catégorie">
+        <button class="chip" type="button" data-filtre="tous" aria-pressed="true">Tout <span class="chip__count">12</span></button>
+        <button class="chip" type="button" data-filtre="hotel" aria-pressed="false">Hôtels <span class="chip__count">3</span></button>
+        <button class="chip" type="button" data-filtre="restaurant" aria-pressed="false">Restaurants <span class="chip__count">3</span></button>
+        <button class="chip" type="button" data-filtre="cafe" aria-pressed="false">Cafés <span class="chip__count">2</span></button>
+        <button class="chip" type="button" data-filtre="evenement" aria-pressed="false">Événements <span class="chip__count">2</span></button>
+        <button class="chip" type="button" data-filtre="experience" aria-pressed="false">Expériences <span class="chip__count">2</span></button>
+      </div>
+
+      <div class="entries" id="liste-entries" aria-live="polite"><!-- rendu par JS --></div>
+
+      <p class="index__more cluster">
+        <a class="btn btn--primaire btn--lg" href="activites.html">Voir les 12 adresses avec les filtres</a>
+        <a class="link-arrow" href="villes.html">Les autres villes <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15"/><path d="m13.5 6.5 5.5 5.5-5.5 5.5"/></svg></a>
+      </p>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       PARCOURS — section épinglée, rail rose
+       ===================================================================== -->
+  <section class="section parcours" id="parcours">
+    <div class="wrap">
+      <div class="head">
+        <h2>Quatre gestes entre l’idée et l’arrivée</h2>
+        <p class="head__meta">De la recherche au paiement, tout se fait sur le téléphone, sans compte obligatoire avant la réservation.</p>
+      </div>
+
+      <div class="parcours__stage" id="parcours-stage">
+        <div class="parcours__rail" aria-hidden="true"><span id="parcours-fill"></span></div>
+        <ol class="parcours__list" id="parcours-list">
+          <li class="step" data-step="1">
+            <span class="step__dot num">1</span>
+            <h3 class="step__title">Choisir la ville</h3>
+            <p class="step__text">Kinshasa est ouverte. Lubumbashi, Goma, Bukavu, Matadi et Kolwezi arrivent : on s’inscrit pour être prévenu, on ne réserve pas à l’aveugle.</p>
+            <span class="step__icon" data-icone="pin"></span>
+          </li>
+          <li class="step" data-step="2">
+            <span class="step__dot num">2</span>
+            <h3 class="step__title">Explorer les adresses</h3>
+            <p class="step__text">Cinq catégories, des filtres par commune, prix, note et disponibilité. Les photos et les prix sont ceux constatés sur place.</p>
+            <span class="step__icon" data-icone="compass"></span>
+          </li>
+          <li class="step" data-step="3">
+            <span class="step__dot num">3</span>
+            <h3 class="step__title">Réserver au bon format</h3>
+            <p class="step__text">Une chambre et ses nuits pour un hôtel, un créneau et une table pour un restaurant, des billets numérotés pour un événement, une séance pour une sortie.</p>
+            <span class="step__icon" data-icone="calendar"></span>
+          </li>
+          <li class="step" data-step="4">
+            <span class="step__dot num">4</span>
+            <h3 class="step__title">Payer depuis le téléphone</h3>
+            <p class="step__text">M-Pesa, Orange Money, Airtel Money ou carte bancaire. Le montant est retenu et ne part à l’établissement qu’après votre arrivée.</p>
+            <span class="step__icon" data-icone="phone"></span>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       VILLES
+       ===================================================================== -->
+  <section class="section" id="villes">
+    <div class="wrap">
+      <div class="head">
+        <h2>Kinshasa d’abord, le pays ensuite</h2>
+        <p class="head__meta">Une ville n’ouvre que lorsque ses adresses ont été visitées et que ses partenaires peuvent encaisser un paiement mobile.</p>
+      </div>
+
+      <div class="villes">
+        <a class="ville-featured" href="activites.html?ville=kinshasa">
+          <figure class="plate ville-featured__plate">
+            <img src="assets/img/ville-kinshasa.jpg" alt="Vue de Kinshasa depuis le fleuve Congo" loading="lazy" decoding="async" width="1280" height="800">
+            <span class="tag tag--rose ville-featured__tag">Ouverte à la réservation</span>
+          </figure>
+          <div class="ville-featured__body">
+            <h3 class="ville-featured__name">Kinshasa</h3>
+            <p class="caption caption--phrase">Province de Kinshasa · 17,8 M d’habitants</p>
+            <p>Douze adresses réparties dans dix communes, du quai de Limete à l’embarcadère de Kinkole. Les sorties sur le fleuve partent tous les jours en fin d’après-midi.</p>
+            <span class="link-arrow">Voir les adresses de Kinshasa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15"/><path d="m13.5 6.5 5.5 5.5-5.5 5.5"/></svg></span>
+          </div>
+        </a>
+
+        <ul class="villes__soon" id="villes-soon"><!-- rendu par JS --></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       CONFIANCE
+       ===================================================================== -->
+  <section class="section bande" id="confiance">
+    <div class="wrap">
+      <div class="head">
+        <h2>Ce qui vous protège, du paiement à l’arrivée</h2>
+        <p class="head__meta">Sur un marché où l’on paie souvent d’avance sans reçu, la garantie de remboursement est la première fonctionnalité, pas la dernière.</p>
+      </div>
+
+      <ul class="assurances" id="liste-assurances"><!-- rendu par JS --></ul>
+
+      <div class="paiement-bloc">
+        <div>
+          <h3>Mobile money au même rang que la carte</h3>
+          <p>
+            Les frais sont affichés avant la validation et le reçu part par SMS, en français comme en lingala.
+            Aucun compte bancaire n’est exigé pour réserver.
+          </p>
+          <ul class="pay-row" id="liste-paiements"><!-- rendu par JS --></ul>
+        </div>
+        <dl class="lines paiement-bloc__chiffres">
+          <div class="line"><dt>Versé à l’établissement</dt><dd>Après votre arrivée</dd></div>
+          <div class="line"><dt>Délai de remboursement</dt><dd>72 heures</dd></div>
+          <div class="line"><dt>Commission de service</dt><dd>5 % affichés</dd></div>
+          <div class="line"><dt>Annulation sans frais</dt><dd>Jusqu’à 24 h avant</dd></div>
+        </dl>
+      </div>
+
+      <div class="avis" id="liste-avis"><!-- rendu par JS --></div>
+      <p class="avis__note">Témoignages de démonstration, écrits pour la maquette et non issus de clients réels.</p>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       CLÔTURE
+       ===================================================================== -->
+  <section class="clot" aria-labelledby="clot-titre">
+    <div class="wrap clot__inner">
+      <h2 id="clot-titre">Votre samedi commence par une adresse vérifiée.</h2>
+      <p class="clot__text">Choisissez une commune, réservez la table ou la chambre, payez par mobile money. Le reçu arrive, l’adresse est gardée.</p>
+      <p class="cluster cluster--centre">
+        <a class="btn btn--contour btn--lg" href="activites.html">Réserver à Kinshasa</a>
+        <a class="btn btn--verre btn--lg" href="villes.html">Suivre l’ouverture des villes</a>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" data-footer></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="assets/js/data.js" defer></script>
+<script src="assets/js/core.js" defer></script>
+<script src="assets/js/motion.js" defer></script>
+<script src="assets/js/landing.js" defer></script>
+</body>
+</html>

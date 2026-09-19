@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paiement de démonstration — Kongo Explore</title>
+<meta name="description" content="Payer une réservation à Kinshasa : M-Pesa, Orange Money, Airtel Money, carte bancaire ou espèces sur place. Détail des frais affiché avant validation. Maquette : aucun paiement n’est réellement traité.">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f%5B%5D=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+
+<a class="skip-link" href="#contenu">Aller au contenu</a>
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="index.html" aria-label="Kongo Explore, accueil">
+      <svg class="brand__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect x="1.5" y="1.5" width="29" height="29" rx="3" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M8 23V9l8 7 8-7v14" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        <circle cx="16" cy="16" r="2.4" fill="#EA4C89"/>
+      </svg>
+      <span>Kongo Explore</span>
+      <span class="brand__sub">Kin · RDC</span>
+    </a>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-principal" aria-label="Ouvrir le menu">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav class="nav" id="nav-principal" data-open="false" aria-label="Navigation principale">
+      <a class="nav__link" href="activites.html">Adresses</a>
+      <a class="nav__link" href="villes.html">Villes</a>
+      <a class="nav__link" href="index.html#parcours">Comment ça marche</a>
+      <a class="nav__link" href="index.html#confiance">Paiement</a>
+      <a class="btn btn--primaire" href="activites.html">Réserver</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+  <div class="wrap">
+
+    <!-- Fil d’Ariane — les deux derniers liens reçoivent les paramètres de la
+         réservation en cours depuis paiement.js. -->
+    <nav class="breadcrumb" aria-label="Fil d’Ariane">
+      <a href="index.html">Accueil</a>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9.5 6 6 6-6 6"/></svg>
+      <a href="activites.html">Adresses</a>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9.5 6 6 6-6 6"/></svg>
+      <a id="fil-fiche" href="fiche.html">L’adresse</a>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9.5 6 6 6-6 6"/></svg>
+      <a id="fil-reservation" href="reservation.html">Réservation</a>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9.5 6 6 6-6 6"/></svg>
+      <span aria-current="page">Paiement</span>
+    </nav>
+
+    <div class="page-head">
+      <h1>Payer la réservation</h1>
+      <p class="page-head__lede">
+        Le montant, la commission de service et le total sont affichés avant toute validation.
+        Le mobile money vient en premier, la carte ensuite : les deux se valident depuis le téléphone.
+      </p>
+      <p class="page-head__meta">
+        <span>Commission de service : 5 % affichés à l’avance</span>
+        <span>Aucun compte bancaire exigé</span>
+        <span>Annulation sans frais jusqu’à 24 h avant</span>
+      </p>
+    </div>
+
+    <ol class="stepper">
+      <li class="stepper__item" data-etat="fait"><span class="stepper__puce" aria-hidden="true">1</span>Réservation</li>
+      <li class="stepper__item" data-etat="courant" aria-current="step"><span class="stepper__puce" aria-hidden="true">2</span>Paiement</li>
+      <li class="stepper__item"><span class="stepper__puce" aria-hidden="true">3</span>Confirmation</li>
+    </ol>
+
+    <!-- Mention de démonstration : visible avant le moindre champ de saisie. -->
+    <div class="notice" role="note">
+      <span data-icone="info"></span>
+      <span>
+        <b>Démonstration.</b> Aucun paiement n’est réellement traité par cette maquette, aucun message
+        n’est envoyé à un opérateur et rien n’est transmis à l’établissement. Ne saisissez pas de vraies
+        coordonnées bancaires ni un vrai numéro mobile money : tout ce que vous tapez reste dans votre
+        navigateur et disparaît dès que vous quittez la page.
+      </span>
+    </div>
+
+    <!-- Le formulaire porte lui-même la grille à deux colonnes (.resa-layout) :
+         le récapitulatif collant reste ainsi dans le même formulaire que les
+         champs, et le bouton de validation est un vrai bouton d’envoi. -->
+    <form class="resa-layout" id="form-paiement" novalidate>
+      <div class="stack-lg">
+
+        <section aria-labelledby="titre-moyens">
+          <h2 id="titre-moyens">Moyen de paiement</h2>
+          <p class="field__hint">
+            Les trois services de mobile money passent en premier, parce qu’ils couvrent la majorité des
+            paiements à Kinshasa. Le choix se fait sans rechargement : les champs correspondants
+            apparaissent juste en dessous.
+          </p>
+
+          <fieldset class="fieldset">
+            <legend class="visually-hidden">Choix du moyen de paiement</legend>
+            <div class="moyens" id="moyens" role="radiogroup" aria-label="Moyen de paiement">
+              <!-- rendu par paiement.js -->
+            </div>
+          </fieldset>
+
+          <!-- Champs du moyen retenu : remplacés en JS, jamais rechargés. -->
+          <div class="paiement-panneau" id="panneau-moyen" aria-live="polite"></div>
+        </section>
+
+        <section aria-labelledby="titre-suite">
+          <h2 id="titre-suite">Ce qui se passe après la validation</h2>
+          <dl class="lines">
+            <div class="line"><dt>Confirmation envoyée par SMS</dt><dd>Immédiate, en français</dd></div>
+            <div class="line"><dt>Montant versé à l’établissement</dt><dd>Après votre arrivée</dd></div>
+            <div class="line"><dt>Remboursement en cas d’absence</dt><dd>Sous 72 heures</dd></div>
+            <div class="line"><dt>Annulation sans frais</dt><dd>Jusqu’à 24 h avant</dd></div>
+          </dl>
+        </section>
+
+      </div>
+
+      <aside class="panel panel--sticky stack" aria-labelledby="titre-recap">
+        <h2 class="panel__title" id="titre-recap">Votre réservation</h2>
+        <dl class="lines" id="recap-lignes"><!-- rendu par paiement.js --></dl>
+        <p class="field__hint" id="recap-commentaire"></p>
+        <button class="btn btn--primaire btn--block btn--lg" type="submit" id="btn-valider">
+          <span id="btn-valider-texte">Valider la réservation</span>
+        </button>
+        <p class="field__hint">
+          En validant, vous acceptez que le montant soit retenu par la plateforme jusqu’à votre arrivée.
+          Aucun débit réel n’a lieu : cette page est une maquette.
+        </p>
+      </aside>
+    </form>
+
+  </div>
+</main>
+
+<footer class="site-footer" data-footer></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="assets/js/data.js" defer></script>
+<script src="assets/js/core.js" defer></script>
+<script src="assets/js/motion.js" defer></script>
+<script src="assets/js/paiement.js" defer></script>
+</body>
+</html>

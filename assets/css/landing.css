@@ -1,0 +1,532 @@
+/* ==========================================================================
+   Accueil — héros, catégories, vedettes, parcours, villes, confiance
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Héros : promesse à gauche, collage photo à droite
+   -------------------------------------------------------------------------- */
+.hero { padding-top: clamp(2rem, 1.2rem + 3vw, 4rem); padding-bottom: var(--e-7); }
+
+.hero__grille {
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+  gap: var(--e-7);
+  align-items: center;
+}
+
+.hero__titre {
+  font-size: var(--t-6);
+  font-weight: 900;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+  margin: 0 0 var(--e-5);
+  max-width: 15ch;
+}
+.hero__titre .surligne {
+  position: relative;
+  display: inline-block;
+  color: var(--rose);
+}
+.hero__titre .surligne::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.06em;
+  height: 0.28em;
+  border-radius: var(--r-pill);
+  background: linear-gradient(90deg, var(--rose-clair), var(--rose));
+  opacity: 0.28;
+}
+
+.hero__lede {
+  font-size: var(--t-1);
+  color: var(--encre-douce);
+  max-width: 46ch;
+  margin-bottom: var(--e-6);
+}
+
+.hero__recherche { margin-bottom: var(--e-4); }
+.hero__raccourcis { margin-bottom: var(--e-6); }
+
+.hero__confiance {
+  display: flex;
+  align-items: center;
+  gap: var(--e-4);
+  flex-wrap: wrap;
+}
+.hero__avatars { display: flex; }
+.hero__avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--r-pill);
+  border: 2px solid var(--fond);
+  margin-inline-start: -0.7rem;
+  display: grid;
+  place-items: center;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  color: var(--blanc);
+  font-family: var(--font-titre);
+}
+.hero__avatar:first-child { margin-inline-start: 0; }
+.hero__avatar--1 { background: linear-gradient(135deg, var(--rose-clair), var(--rose)); }
+.hero__avatar--2 { background: linear-gradient(135deg, color-mix(in srgb, var(--indigo) 78%, var(--blanc)), var(--indigo)); }
+.hero__avatar--3 { background: linear-gradient(135deg, color-mix(in srgb, var(--turquoise) 76%, var(--blanc)), var(--turquoise)); }
+.hero__confiance-texte { display: grid; gap: 2px; }
+.hero__confiance-texte strong { font-size: var(--t--1); }
+.hero__confiance-texte span { font-size: var(--t--1); color: var(--encre-muette); }
+
+/* Collage : une grande planche, deux plus petites, deux cartes flottantes */
+.hero__visuel { position: relative; }
+.hero__collage {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  gap: var(--e-4);
+  aspect-ratio: 1 / 1.02;
+}
+.hero__photo {
+  border-radius: var(--r-xl);
+  box-shadow: var(--ombre-3);
+  overflow: hidden;
+  position: relative;
+}
+.hero__photo img { width: 100%; height: 100%; object-fit: cover; }
+.hero__photo--grande { grid-row: span 2; }
+
+.hero__etiquette {
+  position: absolute;
+  left: var(--e-4);
+  bottom: var(--e-4);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-2);
+  padding: var(--e-2) var(--e-3);
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--encre);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  backdrop-filter: blur(8px);
+}
+.hero__etiquette svg { width: 1rem; height: 1rem; color: var(--rose); }
+
+/* Carte flottante : le petit panneau qui donne le prix et la note */
+.carte-flottante {
+  position: absolute;
+  z-index: 2;
+  background: var(--surface);
+  border: 1px solid var(--bord);
+  border-radius: var(--r-lg);
+  padding: var(--e-4);
+  box-shadow: var(--ombre-3);
+  display: grid;
+  gap: var(--e-1);
+  min-width: 11rem;
+}
+.carte-flottante__titre { font-size: 0.75rem; font-weight: 700; color: var(--encre-muette); letter-spacing: var(--interlettre-caps); text-transform: uppercase; }
+.carte-flottante__valeur { font-family: var(--font-titre); font-weight: 900; font-size: var(--t-2); letter-spacing: -0.02em; }
+.carte-flottante__pied { display: flex; align-items: center; gap: var(--e-2); font-size: var(--t--1); color: var(--encre-muette); }
+.carte-flottante--prix { left: -1.5rem; bottom: 12%; }
+.carte-flottante--note { right: -1rem; top: 8%; }
+
+@media (max-width: 63.99rem) {
+  .hero__grille { grid-template-columns: minmax(0, 1fr); gap: var(--e-6); }
+  .hero__titre { max-width: 18ch; }
+}
+
+/* Sur téléphone : la promesse reste au-dessus du collage, et les deux repères
+   passent sous les photos au lieu de se chevaucher. */
+@media (max-width: 47.99rem) {
+  .hero__visuel { display: grid; gap: var(--e-4); }
+  .hero__collage { aspect-ratio: auto; grid-template-columns: repeat(2, 1fr); }
+  .hero__photo { aspect-ratio: 4 / 3; }
+  .hero__photo--grande { grid-column: span 2; aspect-ratio: 16 / 10; }
+  .carte-flottante { position: static; min-width: 0; }
+  .carte-flottante--prix, .carte-flottante--note { left: auto; right: auto; top: auto; bottom: auto; }
+  .hero__visuel { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero__collage { grid-column: span 2; }
+  .carte-flottante__valeur { font-size: var(--t-1); }
+}
+
+/* --------------------------------------------------------------------------
+   2. Bande de raccourcis : les cinq catégories, en pastilles teintées
+   -------------------------------------------------------------------------- */
+.cats-rail {
+  display: flex;
+  gap: var(--e-3);
+  overflow-x: auto;
+  padding-block: var(--e-2) var(--e-4);
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  /* Indice de défilement : le bord droit s’estompe tant qu’il reste du contenu */
+  mask-image: linear-gradient(90deg, black 0 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, black 0 88%, transparent 100%);
+}
+.cats-rail::-webkit-scrollbar { display: none; }
+.cats-rail > * { scroll-snap-align: start; }
+
+.raccourci {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-3);
+  padding: var(--e-3) var(--e-4);
+  border-radius: var(--r-pill);
+  border: 1px solid var(--bord);
+  background: var(--surface);
+  box-shadow: var(--ombre-1);
+  white-space: nowrap;
+  font-weight: 700;
+  font-size: var(--t--1);
+  color: var(--encre);
+  transition: transform var(--d-base) var(--courbe), box-shadow var(--d-base) var(--courbe), border-color var(--d-base) var(--courbe);
+}
+.raccourci:hover { transform: translateY(-2px); box-shadow: var(--ombre-2); border-color: transparent; color: var(--encre); }
+.raccourci__icone {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--r-pill);
+  background: var(--rose-voile);
+  color: var(--rose-fonce);
+}
+.raccourci__icone svg { width: 1.05rem; height: 1.05rem; }
+.raccourci__compte { color: var(--encre-muette); font-weight: 600; }
+.raccourci--indigo .raccourci__icone { background: rgba(99, 102, 241, 0.14); color: var(--indigo-fonce); }
+.raccourci--corail .raccourci__icone { background: rgba(255, 122, 89, 0.16); color: var(--corail-fonce); }
+.raccourci--ambre .raccourci__icone { background: rgba(255, 176, 32, 0.18); color: var(--ambre-fonce); }
+.raccourci--violet .raccourci__icone { background: rgba(168, 85, 247, 0.14); color: var(--violet-fonce); }
+.raccourci--turquoise .raccourci__icone { background: rgba(20, 184, 166, 0.16); color: var(--turquoise-fonce); }
+
+/* --------------------------------------------------------------------------
+   3. Bande de valeurs : quatre promesses, en filets fins
+   -------------------------------------------------------------------------- */
+.strip {
+  margin-top: var(--e-7);
+  border-top: 1px solid var(--bord);
+  border-bottom: 1px solid var(--bord);
+  background: var(--fond-2);
+}
+.strip__inner { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.strip__item {
+  margin: 0;
+  padding: var(--e-5) var(--e-4);
+  font-size: var(--t--1);
+  font-weight: 600;
+  color: var(--encre-muette);
+  display: flex;
+  align-items: baseline;
+  gap: var(--e-2);
+}
+.strip__item + .strip__item { border-left: 1px solid var(--bord); }
+.strip__num {
+  font-family: var(--font-titre);
+  font-size: var(--t-2);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--encre);
+}
+
+@media (max-width: 63.99rem) {
+  .strip__inner { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .strip__item:nth-child(n + 3) { border-top: 1px solid var(--bord); }
+  .strip__item:nth-child(odd) { border-left: 0; }
+}
+@media (max-width: 30rem) {
+  .strip__inner { grid-template-columns: minmax(0, 1fr); }
+  .strip__item { border-left: 0 !important; border-top: 1px solid var(--bord); }
+  .strip__item:first-child { border-top: 0; }
+}
+
+/* --------------------------------------------------------------------------
+   4. Index des adresses
+   -------------------------------------------------------------------------- */
+#filtres-index { margin-bottom: var(--e-6); }
+.index__more { margin-top: var(--e-7); justify-content: space-between; }
+
+/* --------------------------------------------------------------------------
+   5. Parcours — section épinglée, rail rose, étapes qui s’allument
+   -------------------------------------------------------------------------- */
+.parcours { background: var(--fond-2); }
+
+.parcours__stage { position: relative; padding-top: var(--e-7); }
+
+.parcours__rail {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(var(--e-7) + 1.75rem);
+  height: 3px;
+  border-radius: var(--r-pill);
+  background: var(--bord);
+  overflow: hidden;
+}
+.parcours__rail span {
+  display: block;
+  height: 100%;
+  border-radius: var(--r-pill);
+  background: linear-gradient(90deg, var(--rose-clair), var(--rose));
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.parcours__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--e-6);
+}
+
+.parcours .step { position: relative; display: grid; grid-template-rows: auto auto 1fr auto; gap: var(--e-2); }
+.parcours .step__dot {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: var(--r-lg);
+  display: grid;
+  place-items: center;
+  background: var(--surface);
+  border: 1px solid var(--bord);
+  box-shadow: var(--ombre-1);
+  font-family: var(--font-titre);
+  font-weight: 900;
+  font-size: var(--t-1);
+  color: var(--encre-muette);
+  transition: background-color var(--d-base) var(--courbe),
+              color var(--d-base) var(--courbe),
+              border-color var(--d-base) var(--courbe),
+              box-shadow var(--d-base) var(--courbe);
+}
+.parcours .step[data-active="true"] .step__dot {
+  background: linear-gradient(135deg, var(--rose-clair), var(--rose));
+  border-color: transparent;
+  color: var(--blanc);
+  box-shadow: var(--ombre-rose);
+}
+.parcours .step__title { margin: var(--e-2) 0 0; font-size: var(--t-2); }
+.parcours .step__text { color: var(--encre-muette); font-size: var(--t--1); }
+.parcours .step__icon { margin-top: auto; padding-top: var(--e-4); color: var(--rose); }
+.parcours .step__icon svg { width: 1.6rem; height: 1.6rem; }
+
+@media (max-width: 63.99rem) {
+  .parcours__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .parcours__rail { display: none; }
+}
+@media (max-width: 47.99rem) {
+  .parcours__list { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* --------------------------------------------------------------------------
+   6. Villes
+   -------------------------------------------------------------------------- */
+.villes {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: var(--e-6);
+  align-items: start;
+}
+
+.ville-featured {
+  display: grid;
+  gap: var(--e-4);
+  color: inherit;
+}
+.ville-featured:hover { color: inherit; }
+.ville-featured__plate {
+  aspect-ratio: 16 / 10;
+  border-radius: var(--r-xl);
+  box-shadow: var(--ombre-3);
+  position: relative;
+  overflow: hidden;
+}
+.ville-featured__plate img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--d-lent) var(--courbe); }
+.ville-featured:hover .ville-featured__plate img { transform: scale(1.04); }
+.ville-featured__tag { position: absolute; left: var(--e-4); top: var(--e-4); }
+.ville-featured__name { font-size: var(--t-3); margin: 0 0 var(--e-1); }
+.ville-featured__body p { color: var(--encre-muette); max-width: 48ch; }
+.ville-featured__body .caption { color: var(--encre-pale); }
+
+.villes__soon { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--e-3); }
+.ville-soon {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--e-1) var(--e-4);
+  align-items: center;
+  padding: var(--e-4) var(--e-5);
+  background: var(--surface);
+  border: 1px solid var(--bord);
+  border-radius: var(--r-lg);
+  box-shadow: var(--ombre-1);
+  transition: transform var(--d-base) var(--courbe), box-shadow var(--d-base) var(--courbe);
+}
+.ville-soon:hover { transform: translateY(-2px); box-shadow: var(--ombre-2); }
+.ville-soon__nom { font-family: var(--font-titre); font-weight: 800; font-size: var(--t-1); }
+.ville-soon__province { font-size: var(--t--1); color: var(--encre-pale); }
+.ville-soon__note { grid-column: 1 / -1; margin: 0; font-size: var(--t--1); color: var(--encre-muette); }
+
+@media (max-width: 63.99rem) { .villes { grid-template-columns: minmax(0, 1fr); } }
+
+/* --------------------------------------------------------------------------
+   7. Catégories (tuiles teintées, pas de photo : la couleur porte)
+   -------------------------------------------------------------------------- */
+.cats {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--e-4);
+}
+.cat { grid-column: span 2; }
+.cat:nth-child(1), .cat:nth-child(2) { grid-column: span 3; }
+
+.cat__lien {
+  display: grid;
+  gap: var(--e-3);
+  align-content: start;
+  height: 100%;
+  padding: var(--e-5);
+  border-radius: var(--r-xl);
+  border: 1px solid var(--bord);
+  background: var(--surface);
+  box-shadow: var(--ombre-1);
+  color: var(--encre);
+  transition: transform var(--d-base) var(--courbe), box-shadow var(--d-base) var(--courbe), border-color var(--d-base) var(--courbe);
+}
+.cat__lien:hover { transform: translateY(-4px); box-shadow: var(--ombre-3); border-color: transparent; color: var(--encre); }
+.cat__lien img { display: none; }
+.cat__icone {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--r-md);
+  background: var(--rose-voile);
+  color: var(--rose-fonce);
+}
+.cat__icone svg { width: 1.6rem; height: 1.6rem; }
+.cat__name { font-family: var(--font-titre); font-weight: 800; font-size: var(--t-2); letter-spacing: -0.02em; display: flex; align-items: baseline; gap: var(--e-3); margin: 0; }
+.cat__count { font-family: var(--font-texte); font-weight: 700; font-size: 0.75rem; letter-spacing: var(--interlettre-caps); text-transform: uppercase; color: var(--encre-pale); }
+.cat__text { margin: 0; font-size: var(--t--1); color: var(--encre-muette); }
+
+.cat--indigo .cat__icone { background: rgba(99, 102, 241, 0.14); color: var(--indigo-fonce); }
+.cat--corail .cat__icone { background: rgba(255, 122, 89, 0.16); color: var(--corail-fonce); }
+.cat--ambre .cat__icone { background: rgba(255, 176, 32, 0.18); color: var(--ambre-fonce); }
+.cat--violet .cat__icone { background: rgba(168, 85, 247, 0.14); color: var(--violet-fonce); }
+.cat--turquoise .cat__icone { background: rgba(20, 184, 166, 0.16); color: var(--turquoise-fonce); }
+
+@media (max-width: 63.99rem) {
+  .cat, .cat:nth-child(1), .cat:nth-child(2) { grid-column: span 3; }
+}
+@media (max-width: 47.99rem) {
+  .cat, .cat:nth-child(1), .cat:nth-child(2) { grid-column: span 6; }
+}
+
+/* --------------------------------------------------------------------------
+   8. Confiance
+   -------------------------------------------------------------------------- */
+.assurances {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--e-4);
+}
+@media (max-width: 63.99rem) { .assurances { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 47.99rem) { .assurances { grid-template-columns: minmax(0, 1fr); } }
+
+.paiement-bloc {
+  margin-top: var(--e-7);
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: var(--e-7);
+  padding: var(--e-7);
+  border-radius: var(--r-xl);
+  background: linear-gradient(135deg, var(--rose-voile), color-mix(in srgb, var(--indigo) 10%, transparent));
+  border: 1px solid var(--bord);
+}
+.paiement-bloc h3 { font-size: var(--t-2); }
+.paiement-bloc p { color: var(--encre-douce); }
+.paiement-bloc .pay-row { margin-top: var(--e-5); }
+.paiement-bloc__chiffres {
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  padding: var(--e-5);
+  box-shadow: var(--ombre-2);
+  align-content: start;
+}
+@media (max-width: 63.99rem) { .paiement-bloc { grid-template-columns: minmax(0, 1fr); padding: var(--e-5); } }
+
+.avis {
+  margin-top: var(--e-7);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--e-4);
+}
+.avis__item {
+  margin: 0;
+  padding: var(--e-5);
+  background: var(--surface);
+  border: 1px solid var(--bord);
+  border-radius: var(--r-lg);
+  box-shadow: var(--ombre-1);
+  display: grid;
+  gap: var(--e-3);
+  align-content: start;
+}
+/* Cinq étoiles dessinées (SVG en fond, pas de glyphe Unicode) */
+.avis__item::before {
+  content: "";
+  display: block;
+  width: 5.75rem;
+  height: 1rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='16' viewBox='0 0 24 24' fill='%23FFB020'%3E%3Cpath d='m12 4 2.3 5 5.4.6-4 3.7 1.1 5.3L12 16l-4.8 2.6L8.3 13.3l-4-3.7 5.4-.6Z'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 1.15rem 1rem;
+}
+.avis__texte { margin: 0; font-size: var(--t-0); font-weight: 500; color: var(--encre-douce); }
+.avis__auteur { display: flex; align-items: center; gap: var(--e-3); margin: 0; font-size: var(--t--1); color: var(--encre-muette); }
+.avis__auteur b { color: var(--encre); }
+.avis__avatar {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--r-pill);
+  background: linear-gradient(135deg, var(--rose-clair), var(--rose));
+  color: var(--blanc);
+  font-weight: 800;
+  font-size: 0.8125rem;
+}
+.avis__note { font-size: var(--t--1); color: var(--encre-pale); max-width: 58ch; margin-top: var(--e-4); }
+@media (max-width: 63.99rem) { .avis { grid-template-columns: minmax(0, 1fr); } }
+
+/* --------------------------------------------------------------------------
+   9. Clôture : bande en dégradé, appel à l’action blanc
+   -------------------------------------------------------------------------- */
+.clot {
+  margin-top: var(--section-y);
+  padding-block: var(--e-9);
+  background:
+    radial-gradient(28rem 18rem at 15% 20%, rgba(255, 255, 255, 0.22), transparent 70%),
+    radial-gradient(24rem 16rem at 85% 80%, rgba(99, 102, 241, 0.35), transparent 72%),
+    linear-gradient(135deg, var(--rose-clair), var(--rose) 55%, var(--rose-profond));
+  color: var(--blanc);
+  border-radius: var(--r-xl);
+  margin-inline: var(--gouttiere);
+  max-width: calc(var(--maxw) - var(--gouttiere));
+  margin-inline: auto;
+}
+.clot__inner { text-align: center; display: grid; justify-items: center; gap: var(--e-4); }
+.clot h2 { color: var(--blanc); font-size: var(--t-5); font-weight: 900; max-width: 22ch; margin: 0; }
+.clot__text { color: rgba(255, 255, 255, 0.88); max-width: 52ch; margin: 0; font-weight: 500; }
+.clot .cluster { margin-top: var(--e-3); }
+.clot .btn--contour { --btn-fond: var(--blanc); --btn-texte: var(--rose-fonce); --btn-bord: transparent; }
+
+@media (max-width: 47.99rem) {
+  .clot { border-radius: var(--r-lg); padding-block: var(--e-8); }
+}

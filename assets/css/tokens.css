@@ -1,0 +1,143 @@
+/* ==========================================================================
+   Kongo Explore — Jetons de design (monde « produit moderne », esprit Dribbble)
+   --------------------------------------------------------------------------
+   Blanc, une encre bleu-nuit, un rose qui porte l’action, des surfaces très
+   arrondies et des ombres douces. Aucune valeur brute ne doit apparaître
+   ailleurs que dans ce fichier.
+   ========================================================================== */
+
+:root {
+  /* --- Marque ------------------------------------------------------------ */
+  --rose: #ea4c89;          /* action, accents, prix */
+  --rose-fonce: #d63c78;    /* survol, appui */
+  --rose-clair: #f082ac;    /* dégradé, halos */
+  --rose-voile: #fdeaf2;    /* aplat clair, état sélectionné */
+  --rose-halo: rgba(234, 76, 137, 0.22);
+
+  /* --- Encres ------------------------------------------------------------ */
+  --encre: #0d0c22;         /* titres, texte principal */
+  --encre-douce: #3d3d4e;   /* paragraphes */
+  --encre-muette: #6e6d7a;  /* méta, légendes — 4.9:1 sur blanc */
+  --encre-pale: #9e9ea7;    /* texte désactivé, filets appuyés */
+
+  /* --- Surfaces ---------------------------------------------------------- */
+  --fond: #ffffff;
+  --fond-2: #f8f8f8;        /* bandes alternées */
+  --fond-3: #f1f1f4;        /* champs, socle d’image */
+  --surface: #ffffff;       /* cartes, panneaux */
+  --bord: #e7e7e9;
+  --bord-fort: #d3d3d9;
+
+  /* --- Couleurs d’appoint (catégories, états) ---------------------------- */
+  --indigo: #6366f1;
+  --corail: #ff7a59;
+  --ambre: #ffb020;
+  --violet: #a855f7;
+  --turquoise: #14b8a6;
+  --succes: #2fbf71;
+  --danger: #f43f5e;
+
+  /* Déclinaisons sombres : texte sur aplat teinté, contrasté sur blanc */
+  --indigo-fonce: #4b4fd8;
+  --corail-fonce: #d9542f;
+  --ambre-fonce: #a4700a;
+  --violet-fonce: #8b3ddb;
+  --turquoise-fonce: #0f8a7e;
+  --succes-fonce: #1d9155;
+  --danger-fonce: #d92b4b;
+  --rose-profond: #b8447f;
+
+  /* --- Blanc fixe : pour le texte posé sur une couleur ou une photo, qui ne
+     doit pas s’inverser en mode sombre ------------------------------------ */
+  --blanc: #ffffff;
+  --bg: var(--fond);
+  --fg: var(--encre);
+  --fg-muted: var(--encre-muette);
+  --border: var(--bord);
+
+  /* --- Typographie ------------------------------------------------------- */
+  --font-titre: "Satoshi", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-texte: "Satoshi", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  /* Échelle fluide : 375 -> 1440 */
+  --t--1: clamp(0.8125rem, 0.8rem + 0.08vw, 0.875rem);
+  --t-0: clamp(0.9375rem, 0.92rem + 0.12vw, 1rem);
+  --t-1: clamp(1.0625rem, 1.02rem + 0.22vw, 1.1875rem);
+  --t-2: clamp(1.25rem, 1.16rem + 0.42vw, 1.5rem);
+  --t-3: clamp(1.5rem, 1.32rem + 0.85vw, 2.125rem);
+  --t-4: clamp(1.875rem, 1.5rem + 1.8vw, 3rem);
+  --t-5: clamp(2.25rem, 1.6rem + 3.1vw, 4.25rem);
+  --t-6: clamp(2.75rem, 1.7rem + 5vw, 5.75rem);
+
+  --interlettre-titre: -0.03em;
+  --interlettre-caps: 0.06em;
+  --hauteur-titre: 1.06;
+  --hauteur-texte: 1.6;
+
+  /* --- Espacement -------------------------------------------------------- */
+  --e-1: 0.25rem;
+  --e-2: 0.5rem;
+  --e-3: 0.75rem;
+  --e-4: 1rem;
+  --e-5: 1.5rem;
+  --e-6: 2rem;
+  --e-7: 3rem;
+  --e-8: 4.5rem;
+  --e-9: 6.5rem;
+  --section-y: clamp(3.5rem, 2.6rem + 5.5vw, 7.5rem);
+
+  /* --- Grille ------------------------------------------------------------ */
+  --maxw: 80rem;
+  --maxw-etroit: 46rem;
+  --gouttiere: clamp(1.25rem, 0.7rem + 2.6vw, 3rem);
+
+  /* --- Rayons ------------------------------------------------------------ */
+  --r-xs: 8px;
+  --r-sm: 12px;
+  --r-md: 18px;
+  --r-lg: 26px;
+  --r-xl: 34px;
+  --r-pill: 999px;
+
+  /* --- Profondeur : ombres douces, décalées, jamais de halo plat -------- */
+  --ombre-1: 0 1px 2px rgba(13, 12, 34, 0.05), 0 4px 12px rgba(13, 12, 34, 0.05);
+  --ombre-2: 0 2px 6px rgba(13, 12, 34, 0.05), 0 12px 30px rgba(13, 12, 34, 0.09);
+  --ombre-3: 0 4px 10px rgba(13, 12, 34, 0.06), 0 22px 48px rgba(13, 12, 34, 0.12);
+  --ombre-rose: 0 6px 18px rgba(234, 76, 137, 0.32);
+
+  /* --- Mouvement --------------------------------------------------------- */
+  --courbe: cubic-bezier(0.22, 1, 0.36, 1);
+  --courbe-entree: cubic-bezier(0.16, 1, 0.3, 1);
+  --d-rapide: 140ms;
+  --d-base: 220ms;
+  --d-lent: 380ms;
+
+  /* --- Chrome navigateur ------------------------------------------------- */
+  --focus: var(--rose);
+  --header-h: 4.75rem;
+}
+
+@media (max-width: 47.99rem) {
+  :root { --header-h: 4.25rem; }
+}
+
+/* Mode sombre : même rôles, valeurs inversées. Fond bleu-nuit, surfaces
+   légèrement plus claires, le rose reste l’action. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fond: #0b0a1a;
+    --fond-2: #12112a;
+    --fond-3: #1b1a35;
+    --surface: #161530;
+    --bord: rgba(255, 255, 255, 0.1);
+    --bord-fort: rgba(255, 255, 255, 0.2);
+    --encre: #f7f7fb;
+    --encre-douce: #c9c8d6;
+    --encre-muette: #a3a2b8;
+    --encre-pale: #7c7b93;
+    --rose-voile: rgba(234, 76, 137, 0.16);
+    --ombre-1: 0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3);
+    --ombre-2: 0 2px 6px rgba(0, 0, 0, 0.45), 0 12px 30px rgba(0, 0, 0, 0.4);
+    --ombre-3: 0 4px 10px rgba(0, 0, 0, 0.5), 0 22px 48px rgba(0, 0, 0, 0.45);
+  }
+}

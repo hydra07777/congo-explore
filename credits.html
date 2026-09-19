@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crédits et provenance des images — Kongo Explore</title>
+<meta name="description" content="Provenance des photographies de la maquette Kongo Explore (Wikimedia Commons), caractère fictif des établissements, des prix et des avis, et rappel : aucun paiement n’est traité.">
+<meta name="theme-color" content="#ffffff">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f%5B%5D=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+
+<a class="skip-link" href="#contenu">Aller au contenu</a>
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="index.html" aria-label="Kongo Explore, accueil">
+      <svg class="brand__mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect x="1.5" y="1.5" width="29" height="29" rx="3" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M8 23V9l8 7 8-7v14" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        <circle cx="16" cy="16" r="2.4" fill="#EA4C89"/>
+      </svg>
+      <span>Kongo Explore</span>
+      <span class="brand__sub">Kin · RDC</span>
+    </a>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-principal" aria-label="Ouvrir le menu">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav class="nav" id="nav-principal" data-open="false" aria-label="Navigation principale">
+      <a class="nav__link" href="activites.html">Adresses</a>
+      <a class="nav__link" href="villes.html">Villes</a>
+      <a class="nav__link" href="index.html#parcours">Comment ça marche</a>
+      <a class="nav__link" href="index.html#confiance">Paiement</a>
+      <a class="btn btn--primaire" href="activites.html">Réserver</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+  <div class="wrap">
+
+    <nav class="breadcrumb" aria-label="Fil d’Ariane">
+      <a href="index.html">Accueil</a>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9.5 6 6 6-6 6"/></svg>
+      <span aria-current="page">Crédits</span>
+    </nav>
+
+    <div class="page-head">
+      <h1>Crédits et provenance des images</h1>
+      <p class="page-head__lede">
+        Les photographies de cette maquette viennent de Wikimedia Commons, sous les licences indiquées
+        par leurs auteurs. Les lieux, les prix et les avis, en revanche, sont inventés : personne ne
+        peut réserver ni payer quoi que ce soit ici.
+      </p>
+      <p class="page-head__meta">
+        <span>Images : Wikimedia Commons</span>
+        <span>Fiches, prix et avis : données fictives</span>
+        <span>Aucun paiement traité</span>
+      </p>
+    </div>
+
+    <!-- ---------------------------------------------------------------- -->
+    <section class="section--tight" aria-labelledby="titre-photos">
+      <div class="head">
+        <h2 id="titre-photos">Photographies</h2>
+        <p class="head__meta">
+          Fichier par fichier, avec l’auteur, la licence et le lien vers la page d’origine. La liste est
+          lue dans le fichier de crédits du dossier des images.
+        </p>
+      </div>
+
+      <!-- Rendu par credits.js : liste des crédits, ou .empty si le fichier manque. -->
+      <div id="zone-credits" aria-live="polite">
+        <dl class="pratique" id="credits-liste"></dl>
+      </div>
+
+      <div class="notice" role="note" id="note-licences">
+        <span data-icone="info"></span>
+        <span>
+          Les images sont utilisées telles quelles, recadrées pour la mise en page, sans modification
+          du contenu. Une photographie retirée sur sa page d’origine doit l’être ici aussi : ouvrez le
+          lien « Source » de la ligne concernée pour vérifier la licence en vigueur.
+        </span>
+      </div>
+    </section>
+
+    <!-- ---------------------------------------------------------------- -->
+    <section class="section--tight" aria-labelledby="titre-fictif">
+      <div class="head">
+        <h2 id="titre-fictif">Ce qui est fictif dans cette maquette</h2>
+        <p class="head__meta">Tout ce qui ressemble à une donnée commerciale l’est.</p>
+      </div>
+
+      <dl class="pratique">
+        <div>
+          <dt>Établissements</dt>
+          <dd>
+            Les douze adresses — hôtels, restaurants, cafés, événements, expériences — sont inventées
+            pour la présentation. Aucun établissement de Kinshasa ne porte ces noms, et aucune de ces
+            fiches ne correspond à une adresse réelle.
+          </dd>
+        </div>
+        <div>
+          <dt>Prix et équivalents en francs</dt>
+          <dd>
+            Les montants en dollars US et leur conversion en CDF sont des valeurs d’exemple, calculées
+            au taux de référence de <span class="num" id="taux-reference">2 900</span> CDF pour 1 US$
+            retenu par la maquette. Ce taux n’est pas un taux de change officiel et les prix ne sont
+            négociés avec personne.
+          </dd>
+        </div>
+        <div>
+          <dt>Avis, notes et témoignages</dt>
+          <dd>
+            Les notes, le nombre d’avis et les commentaires ont été écrits pour la maquette. Ce ne sont
+            pas des retours de clients réels, et aucune personne citée n’a réservé quoi que ce soit.
+          </dd>
+        </div>
+        <div>
+          <dt>Disponibilités et places restantes</dt>
+          <dd>
+            Les chambres, tables, billets et séances disponibles sont posés en dur dans le fichier de
+            données. Ils ne reflètent aucune occupation réelle.
+          </dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- ---------------------------------------------------------------- -->
+    <section class="section--tight" aria-labelledby="titre-paiement">
+      <div class="head">
+        <h2 id="titre-paiement">Aucun paiement n’est traité</h2>
+        <p class="head__meta">Ni carte, ni mobile money, ni espèces.</p>
+      </div>
+
+      <div class="notice" role="note">
+        <span data-icone="shield"></span>
+        <span>
+          <b>La maquette ne traite aucun paiement.</b> L’écran de paiement n’affiche que des champs de
+          démonstration : aucune donnée n’est envoyée à un serveur, à un opérateur de mobile money ou à
+          une banque, et rien n’est enregistré. Ne saisissez jamais de vraies coordonnées bancaires ni
+          un vrai numéro mobile money sur une page de démonstration — y compris celle-ci.
+        </span>
+      </div>
+
+      <dl class="pratique">
+        <div>
+          <dt>Moyens présentés</dt>
+          <dd>M-Pesa, Orange Money, Airtel Money, carte bancaire, et espèces sur place lorsque la fiche les annonce.</dd>
+        </div>
+        <div>
+          <dt>Commission de service</dt>
+          <dd>5 % affichés avant la validation, comme le ferait la plateforme réelle. Aucun montant n’est prélevé.</dd>
+        </div>
+        <div>
+          <dt>Confirmation</dt>
+          <dd>La référence de réservation est fabriquée dans le navigateur ; aucune réservation n’est créée nulle part.</dd>
+        </div>
+        <div>
+          <dt>Données de la fiche</dt>
+          <dd>Le reçu et le fichier de calendrier sont construits à partir du fichier de données local, jamais depuis un serveur.</dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- ---------------------------------------------------------------- -->
+    <section class="section--tight" aria-labelledby="titre-retenir">
+      <div class="head">
+        <h2 id="titre-retenir">À retenir avant de juger les écrans</h2>
+        <p class="head__meta">Trois phrases suffisent.</p>
+      </div>
+      <p>
+        Cette maquette existe pour montrer le parcours : choisir une ville, choisir une adresse,
+        réserver au bon format, payer depuis le téléphone, recevoir une confirmation. Les décisions
+        d’interface — le mobile money au même rang que la carte, les frais annoncés avant la
+        validation, le reçu en dollars et en francs congolais — sont le vrai sujet.
+      </p>
+      <p class="cluster">
+        <a class="btn btn--primaire" href="activites.html">Voir les adresses</a>
+        <a class="btn btn--ghost" href="index.html#parcours">Revoir le parcours</a>
+      </p>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer" data-footer></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="assets/js/data.js" defer></script>
+<script src="assets/js/core.js" defer></script>
+<script src="assets/js/motion.js" defer></script>
+<script src="assets/img/credits.js" defer></script>
+<script src="assets/js/credits.js" defer></script>
+</body>
+</html>

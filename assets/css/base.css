@@ -29,22 +29,24 @@ body {
   overflow-x: hidden;
 }
 
-/* Halos de marque : deux lueurs très douces, uniquement décoratives. */
+/* Halos de marque : deux lueurs très douces, uniquement décoratives.
+   Opacité réduite pour rester discrètes sur fond blanc en toutes
+   circonstances. */
 body::before {
   content: "";
   position: fixed;
   inset: -20% -10% auto -10%;
-  height: 60vh;
+  height: 50vh;
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(38rem 22rem at 12% 0%, var(--rose-halo), transparent 70%),
-    radial-gradient(34rem 20rem at 88% 6%, rgba(99, 102, 241, 0.16), transparent 72%);
-  opacity: 0.9;
+    radial-gradient(28rem 18rem at 12% 0%, var(--rose-halo), transparent 70%),
+    radial-gradient(26rem 16rem at 88% 6%, rgba(99, 102, 241, 0.08), transparent 72%);
+  opacity: 0.55;
 }
 
 @media (prefers-color-scheme: dark) {
-  body::before { opacity: 0.5; }
+  body::before { opacity: 0.4; }
 }
 
 main, header, footer, nav { position: relative; z-index: 1; }
